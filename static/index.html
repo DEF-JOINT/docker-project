@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Мини-проект на Nginx + Docker</title>
+</head>
+<body>
+  <h1>Привет из Nginx!</h1>
+  <p>Нажми кнопку, чтобы получить задачи из Flask API:</p>
+  <button onclick="loadTasks()">Загрузить задачи</button>
+  <pre id="output"></pre>
+
+  <script>
+    async function loadTasks() {
+      const res = await fetch('/api/tasks');
+      const data = await res.json();
+      document.getElementById('output').textContent = JSON.stringify(data, null, 2);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+services:
+  web:
+    image: nginx:alpine
+    container_name: nginx_web
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./static:/usr/share/nginx/html:ro
+    depends_on:
+      - app
+
+  app:
+    build: ./app
+    container_name: app_api
+    expose:
+      - "8000"
